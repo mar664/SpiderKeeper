@@ -67,7 +67,8 @@ def reload_runnable_spider_job_execution():
                                   second=0,
                                   max_instances=999,
                                   misfire_grace_time=60 * 60,
-                                  coalesce=True)
+                                  coalesce=True,
+                                 timezone="Australia/Sydney")
             except Exception as e:
                 app.logger.error(
                     '[load_spider_job] failed {} {},may be cron expression format error '.format(job_id, str(e)))
