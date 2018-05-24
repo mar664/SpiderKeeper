@@ -23,12 +23,11 @@ app.config.from_object(config)
 from pytz import timezone
 from pytz import utc
 
+@app.template_filter()
 def datetimefilter(value):
     local_dt = utc.localize(value).astimezone(timezone("Australia/Sydney"))
 
     return local_dt
-
-app.jinja_env.filters['datetimefilter'] = datetimefilter
 
 # Logging
 log = logging.getLogger('werkzeug')
