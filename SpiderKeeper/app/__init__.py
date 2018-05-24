@@ -20,6 +20,16 @@ app = Flask(__name__)
 # Configurations
 app.config.from_object(config)
 
+from pytz import timezone
+from pytz.utc import localize
+
+def datetimefilter(value):
+    local_dt = localize(value).astimezone(timezone("Australia/Sydney"))
+
+    return local_dt
+
+app.jinja_env.filters['datetimefilter'] = datetimefilter
+
 # Logging
 log = logging.getLogger('werkzeug')
 log.setLevel(logging.ERROR)
