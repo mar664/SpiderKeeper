@@ -21,10 +21,10 @@ app = Flask(__name__)
 app.config.from_object(config)
 
 from pytz import timezone
-from pytz.utc import localize
+from pytz import utc
 
 def datetimefilter(value):
-    local_dt = localize(value).astimezone(timezone("Australia/Sydney"))
+    local_dt = utc.localize(value).astimezone(timezone("Australia/Sydney"))
 
     return local_dt
 
