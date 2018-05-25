@@ -485,8 +485,8 @@ def utility_processor():
         if total_seconds < 60:
             return '%s s' % total_seconds
         if total_seconds < 3600:
-            return '%s m' % int(total_seconds / 60)
-        return '%s h %s m' % (int(total_seconds / 3600), int((total_seconds % 3600) / 60))
+            return '%s m %s s' % (int(total_seconds / 60), int(total_seconds % 60))
+        return '%s h %s m % s' % (int(total_seconds / 3600), int((total_seconds % 3600) / 60), int((total_seconds % 3600) % 60))
     
     def datetimefilter(value):
         local_dt = utc.localize(value).astimezone(timezone("Australia/Sydney"))
