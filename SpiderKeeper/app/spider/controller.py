@@ -533,9 +533,17 @@ def project_manage():
 def job_dashboard(project_id):
     return render_template("job_dashboard.html", job_status=JobExecution.list_jobs(project_id))
 
+@app.route("/project/<project_id>/job/pending")
+def pending_jobs(project_id):
+    return render_template("pending_jobs.html", job_status=JobExecution.list_pending_jobs(project_id))
+
 @app.route("/project/<project_id>/job/running")
 def running_jobs(project_id):
-    return render_template("running_jobs.html", job_status=JobExecution.list_jobs(project_id))
+    return render_template("running_jobs.html", job_status=JobExecution.list_running_jobs(project_id))
+
+@app.route("/project/<project_id>/job/completed")
+def completed_jobs(project_id):
+    return render_template("completed_jobs.html", job_status=JobExecution.list_completed_jobs(project_id))
 
 @app.route("/project/<project_id>/job/periodic")
 def job_periodic(project_id):
