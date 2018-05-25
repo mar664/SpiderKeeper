@@ -1,0 +1,40 @@
+<table class="table table-striped" id="pending-jobs">
+            <tr>
+                <th style="width: 10px">#</th>
+                <th style="width: 30px">Job</th>
+                <th style="width: 160px">Spider</th>
+                <th style="width: 100px">Args</th>
+                <th style="width: 40px">Priority</th>
+                <th style="width: 160px">Wait</th>
+            </tr>
+            {% for job in job_status %}
+            {% if job.job_instance %}
+            <tr>
+                <td>{{ job.job_execution_id }}</td>
+                <td><a href="/project/1/job/periodic#{{ job.job_instance_id }}">{{ job.job_instance_id }}</a></td>
+                <td>{{ job.job_instance.spider_name }}</td>
+                <td class="txt-args" data-toggle="tooltip" data-placement="right"
+                    title="{{ job.job_instance.spider_arguments }}">{{ job.job_instance.spider_arguments }}
+                </td>
+                {% if job.job_instance.priority == -1 %}
+                <td>
+                    <span class="label label-default">LOW</span>
+                </td>
+                {% elif job.job_instance.priority == 0 %}
+                <td>
+                    <span class="label label-info">NORMAL</span>
+                </td>
+                {% elif job.job_instance.priority == 1 %}
+                <td>
+                    <span class="label label-warning">HIGH</span>
+                </td>
+                {% elif job.job_instance.priority == 2 %}
+                <td>
+                    <span class="label label-danger">HIGHEST</span>
+                </td>
+                {% endif %}
+                <td>{{ timedelta(now,job.create_time) }}</td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+        </table>
