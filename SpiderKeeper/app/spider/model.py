@@ -204,7 +204,30 @@ class JobExecution(Base):
                                        JobExecution.running_status == SpiderStatus.CANCELED)).order_by(
                                    desc(JobExecution.date_modified)).limit(each_status_limit)]
         return result
+    
+    @classmethod
+    def list_pending_jobs(cls, project_id, each_status_limit=100):
+        return [job_execution.to_dict() for job_execution in
+                             JobExecution.query.filter_by(project_id=project_id,
+                                                          running_status=SpiderStatus.PENDING).order_by(
+                                 desc(JobExecution.date_modified)).limit(each_status_limit)]
 
+    @classmethod
+    def list_running_jobs(cls, project_id, each_status_limit=100):
+        return [job_execution.to_dict() for job_execution in
+                             JobExecution.query.filter_by(project_id=project_id,
+                                                          running_status=SpiderStatus.RUNNING).order_by(
+                                 desc(JobExecution.date_modified)).limit(each_status_limit)]
+    
+    @classmethod
+    def list_completed_jobs(cls, project_id, each_status_limit=100):
+        return [job_execution.to_dict() for job_execution in
+                               JobExecution.query.filter(JobExecution.project_id == project_id).filter(
+                                   (JobExecution.running_status == SpiderStatus.FINISHED) | (
+                                       JobExecution.running_status == SpiderStatus.CANCELED)).order_by(
+                                   desc(JobExecution.date_modified)).limit(each_status_limit)]
+    
+    
     @classmethod
     def list_run_stats_by_hours(cls, project_id):
         result = {}
