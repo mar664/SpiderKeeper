@@ -533,6 +533,9 @@ def project_manage():
 def job_dashboard(project_id):
     return render_template("job_dashboard.html", job_status=JobExecution.list_jobs(project_id))
 
+@app.route("/project/<project_id>/job/running")
+def running_jobs(project_id):
+    return render_template("running_jobs.html", job_status=JobExecution.list_jobs(project_id))
 
 @app.route("/project/<project_id>/job/periodic")
 def job_periodic(project_id):
