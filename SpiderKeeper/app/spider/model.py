@@ -166,9 +166,9 @@ class JobExecution(Base):
             'job_execution_id': self.id,
             'job_instance_id': self.job_instance_id,
             'service_job_execution_id': self.service_job_execution_id,
-            'create_time': self.create_time.strftime('%Y-%m-%d %H:%M:%S') if self.create_time else None,
-            'start_time': self.start_time.strftime('%Y-%m-%d %H:%M:%S') if self.start_time else None,
-            'end_time': self.end_time.strftime('%Y-%m-%d %H:%M:%S') if self.end_time else None,
+            'create_time': self.create_time if self.create_time else None,
+            'start_time': self.start_time if self.start_time else None,
+            'end_time': self.end_time if self.end_time else None,
             'running_status': self.running_status,
             'running_on': self.running_on,
             'job_instance': job_instance.to_dict() if job_instance else {}
