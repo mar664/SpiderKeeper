@@ -25,7 +25,7 @@ from pytz import utc
 import datetime
 @app.template_filter()
 def datetimefilter(value):
-    local_dt = utc.localize(datetime.datetime.strptime(value, '%Y-%m-%d %H:%M:%S')).astimezone(timezone("Australia/Sydney"))
+    local_dt = utc.localize(value).astimezone(timezone("Australia/Sydney"))
 
     return local_dt.strftime('%Y-%m-%d %H:%M:%S')
 
