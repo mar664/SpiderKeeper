@@ -256,4 +256,11 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+<script type="text/javascript">
+    window.setInterval(function(){
+    $.get("/project/{{ project.id }}/job/running", function(data){
+        $("div#running-jobs").html(data);  
+     });
+      }, 2000);
+ </div>
 {% endblock %}
