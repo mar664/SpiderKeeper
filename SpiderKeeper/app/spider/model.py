@@ -1,7 +1,7 @@
 import datetime
 from sqlalchemy import desc
 from SpiderKeeper.app import db, Base
-
+from datetime import datetime
 
 class Project(Base):
     __tablename__ = 'sk_project'
@@ -84,7 +84,7 @@ class SpiderInstance(Base):
         for spider in cls.query.filter_by(project_id=project_id).all():
             last_runtime = last_runtime_list.get(spider.spider_name)
             res.append(dict(spider.to_dict(),
-                            **{'spider_last_runtime': last_runtime if last_runtime else '-',
+                            **{'spider_last_runtime': datetime.strptime(last_runtime, '%Y-%m-%d %H:%M:%S') if last_runtime else '-',
                                'spider_avg_runtime': avg_runtime_list.get(spider.spider_name)
                                }))
         return res
