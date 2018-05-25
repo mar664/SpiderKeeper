@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ spider_instance.spider_instance_id }}</td>
                 <td>{{ spider_instance.spider_name }}</td>
-                <td>{{ spider_instance.spider_last_runtime | datetimefilter }}</td>
+                <td>{{ datetimefilter(spider_instance.spider_last_runtime) }}</td>
                 <td>{{ readable_time(spider_instance.spider_avg_runtime) }}</td>
             </tr>
             {% endfor %}
