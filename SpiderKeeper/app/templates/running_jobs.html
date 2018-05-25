@@ -11,7 +11,7 @@
                 <th style="width: 40px">Running On</th>
                 <th style="width: 40px">Action</th>
             </tr>
-            {% for job in job_status.RUNNING %}
+            {% for job in job_status %}
             {% if job.job_instance %}
             <tr>
                 <td>{{ job.job_execution_id }}</td>
