@@ -23,9 +23,13 @@ app.config.from_object(config)
 from pytz import timezone
 from pytz import utc
 import datetime
+
 @app.template_filter()
 def datetimefilter(value):
-    local_dt = utc.localize(value).astimezone(timezone("Australia/Sydney"))
+    try:
+        local_dt = utc.localize(value).astimezone(timezone("Australia/Sydney"))
+    except AttributeError:
+        return value
 
     return local_dt.strftime('%Y-%m-%d %H:%M:%S')
 
