@@ -18,16 +18,16 @@
                             <div class="form-group">
                                 <label>Priority</label>
                                 <select class="form-control" name="priority">
-                                    <option label="Low" value="-1" {% if job_instance.priority == "-1" %}selected="selected"{% endif %}>Low</option>
-                                    <option label="Normal" value="0" {% if job_instance.priority == "0" %}selected="selected"{% endif %}>Normal</option>
-                                    <option label="High" value="1" {% if job_instance.priority == "1" %}selected="selected"{% endif %}>High</option>
-                                    <option label="Highest" value="2" {% if job_instance.priority == "2" %}selected="selected"{% endif %}>Highest</option>
+                                    <option label="Low" value="-1" {% if job_instance.priority == -1 %}selected="selected"{% endif %}>Low</option>
+                                    <option label="Normal" value="0" {% if job_instance.priority == 0 %}selected="selected"{% endif %}>Normal</option>
+                                    <option label="High" value="1" {% if job_instance.priority == 1 %}selected="selected"{% endif %}>High</option>
+                                    <option label="Highest" value="2" {% if job_instance.priority == 2 %}selected="selected"{% endif %}>Highest</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Args</label>
                                 <input type="text" name="spider_arguments" class="form-control"
-                                       placeholder="foo=1,bar=2">
+                                       placeholder="foo=1,bar=2" value="{{ job_instance.spider_arguments }}">
                             </div>
                         </div>
                         <div class="col-md-6">
