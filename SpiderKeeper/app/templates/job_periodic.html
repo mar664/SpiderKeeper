@@ -223,13 +223,13 @@
     window.onload = function(){
       var original_content = $("div.modal-content");
         $('#myModal').on('hide.bs.modal', function (e) {
-    $("div.modal-content").html(original_content);
+    $("div#job-run-modal div.modal-content").html(original_content);
 })                  
 };
        function updateJob(job_id){
       $.get("/project/{{ project.id }}/job/" + job_id + "/periodic", function(data){
         $("div#job-run-modal div.modal-content").html(data);  
-        $("div#job-run-modal").show();
+        $("div#job-run-modal").modal("show");
      });          
    }
 </script>
