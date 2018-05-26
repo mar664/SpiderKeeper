@@ -228,7 +228,7 @@
 };
        function updateJob(job_id){
       $.get("/project/{{ project.id }}/job/" + job_id + "/periodic", function(data){
-        $("div.modal-content").html(data);  
+        $("div#job-run-modal div.modal-content").html(data);  
         $("div#job-run-modal").show();
      });          
    }
