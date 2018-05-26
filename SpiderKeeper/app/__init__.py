@@ -23,6 +23,7 @@ app.config.from_object(config)
 from pytz import timezone
 from pytz import utc
 import datetime
+app.debug = True
 
 @app.template_filter()
 def datetimefilter(value):
