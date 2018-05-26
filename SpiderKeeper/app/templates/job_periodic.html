@@ -220,7 +220,7 @@
     <!-- /.modal-dialog -->
 </div>
 <script type="text/javascript">
-    (function($){
+    window.onload = function(){
       var original_content = $("div.modal-content");
         $('#myModal').on('hide.bs.modal', function (e) {
     $("div.modal-content").html(original_content);
@@ -231,7 +231,7 @@
         $("div#job-run-modal").show();
      });          
    }
-                             })(jQuery);
+                             };
 </script>
 <!-- /.modal -->
 {% endblock %}
