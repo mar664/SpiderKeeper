@@ -599,6 +599,33 @@ def job_add(project_id):
         db.session.commit()
     return redirect(request.referrer, code=302)
 
+@app.route("/project/<project_id>/job/<job_id>/update", methods=['post'])
+def job_update(project_id, job_id):
+    job_instance = JobInstance.query.filter_by(project_id=project_id, id=job_id).first()
+    
+    project = Project.find_project_by_id(project_id)
+    job_instance.spider_name = request.form['spider_name']
+    job_instance.spider_arguments = request.form['spider_arguments']
+    job_instance.priority = request.form.get('priority', 0)
+    # chose daemon manually
+    if request.form['daemon'] != 'auto':
+        spider_args = []
+        if request.form['spider_arguments']:
+            spider_args = request.form['spider_arguments'].split(",")
+        spider_args.append("daemon={}".format(request.form['daemon']))
+        job_instance.spider_arguments = ','.join(spider_args)
+
+    job_instance.cron_minutes = request.form.get('cron_minutes') or '0'
+    job_instance.cron_hour = request.form.get('cron_hour') or '*'
+    job_instance.cron_day_of_month = request.form.get('cron_day_of_month') or '*'
+    job_instance.cron_day_of_week = request.form.get('cron_day_of_week') or '*'
+    job_instance.cron_month = request.form.get('cron_month') or '*'
+    # set cron exp manually
+    if request.form.get('cron_exp'):
+        job_instance.cron_minutes, job_instance.cron_hour, job_instance.cron_day_of_month, job_instance.cron_day_of_week, job_instance.cron_month = \
+            request.form['cron_exp'].split(' ')
+    db.session.commit()
+    return redirect(request.referrer, code=302)
 
 @app.route("/project/<project_id>/jobexecs/<job_exec_id>/stop")
 def job_stop(project_id, job_exec_id):
