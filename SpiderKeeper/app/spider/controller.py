@@ -556,13 +556,13 @@ def job_periodic(project_id):
     job_instance_list = [job_instance.to_dict() for job_instance in
                          JobInstance.query.filter_by(run_type="periodic", project_id=project_id).all()]
     return render_template("job_periodic.html",
-                           job_instance_list=job_instance_list)
+                           job_instance_list=job_instance_list, form_name = "Add Periodic Job")
 
 @app.route("/project/<project_id>/job/<job_id>/periodic")
 def job_periodic_form(project_id, job_id):
     job_instance = JobInstance.query.filter_by(project_id=project_id, id=job_id).first()
     return render_template("job_periodic_form.html",
-                           job_instance=job_instance.to_dict())
+                           job_instance=job_instance.to_dict(), form_name = "Update Periodic Job")
 
 @app.route("/project/<project_id>/job/add", methods=['post'])
 def job_add(project_id):
