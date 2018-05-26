@@ -220,18 +220,18 @@
     <!-- /.modal-dialog -->
 </div>
 <script type="text/javascript">
-    $( window).load(function(){
+    (function($){
       var original_content = $("div.modal-content");
         $('#myModal').on('hide.bs.modal', function (e) {
     $("div.modal-content").html(original_content);
 })                  
-    });
     function updateJob(job_id){
       $.get("/project/{{ project.id }}/job/" + job_id + "/periodic", function(data){
         $("div.modal-content").html(data);  
         $("div#job-run-modal").show();
      });          
    }
+                             })(jQuery);
 </script>
 <!-- /.modal -->
 {% endblock %}
