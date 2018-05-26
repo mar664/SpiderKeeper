@@ -34,31 +34,31 @@
                             <div class="form-group">
                                 <label>Choose Month</label>
                                 <select class="form-control" name="cron_month">
-                                    <option value="*" {% if job_instance.cron_month == "* %}selected="selected"{% endif %}>Every Month</option>
+                                    <option value="*" {% if job_instance.cron_month == "* %} selected="selected"{% endif %}>Every Month</option>
                                     {% for i in range(1,13) %}
-                                    <option value="{{ i }}" {% if job_instance.cron_month == i %}selected="selected"{% endif %}>{{ i }}</option>
+                                    <option value="{{ i }}" {% if job_instance.cron_month == i %} selected="selected"{% endif %}>{{ i }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Choose Day of Week</label>
                                 <select class="form-control" name="cron_day_of_week">
-                                    <option value="*" {% if job_instance.cron_day_of_week == "*" %}selected="selected"{% endif %}>Every day</option>
-                                    <option value="0" {% if job_instance.cron_day_of_week == "0" %}selected="selected"{% endif %}>Monday</option>
-                                    <option value="1" {% if job_instance.cron_day_of_week == "1" %}selected="selected"{% endif %}>Tuesday</option>
-                                    <option value="2" {% if job_instance.cron_day_of_week == "2" %}selected="selected"{% endif %}>Wednesday</option>
-                                    <option value="3" {% if job_instance.cron_day_of_week == "3" %}selected="selected"{% endif %}>Thursday</option>
-                                    <option value="4" {% if job_instance.cron_day_of_week == "4" %}selected="selected"{% endif %}>Friday</option>
-                                    <option value="5" {% if job_instance.cron_day_of_week == "5" %}selected="selected"{% endif %}>Saturday</option>
-                                    <option value="6" {% if job_instance.cron_day_of_week == "6" %}selected="selected"{% endif %}>Sunday</option>
+                                    <option value="*" {% if job_instance.cron_day_of_week == "*" %} selected="selected"{% endif %}>Every day</option>
+                                    <option value="0" {% if job_instance.cron_day_of_week == "0" %} selected="selected"{% endif %}>Monday</option>
+                                    <option value="1" {% if job_instance.cron_day_of_week == "1" % }selected="selected"{% endif %}>Tuesday</option>
+                                    <option value="2" {% if job_instance.cron_day_of_week == "2" %} selected="selected"{% endif %}>Wednesday</option>
+                                    <option value="3" {% if job_instance.cron_day_of_week == "3" %} selected="selected"{% endif %}>Thursday</option>
+                                    <option value="4" {% if job_instance.cron_day_of_week == "4" %} selected="selected"{% endif %}>Friday</option>
+                                    <option value="5" {% if job_instance.cron_day_of_week == "5" %} selected="selected"{% endif %}>Saturday</option>
+                                    <option value="6" {% if job_instance.cron_day_of_week == "6" %} selected="selected"{% endif %}>Sunday</option>
                                 </select>
                             </div>
                             <div class="form-group">
                                 <label>Choose Day of Month</label>
                                 <select class="form-control" name="cron_day_of_month">
-                                    <option value="*" {% if job_instance.cron_day_of_month == "*" %}selected="selected"{% endif %}>Every day</option>
+                                    <option value="*" {% if job_instance.cron_day_of_month == "*" %} selected="selected"{% endif %}>Every day</option>
                                     {% for i in range(1,32) %}
-                                    <option value="{{ i }}" {% if job_instance.cron_day_of_month == i %}selected="selected"{% endif %}>{{ i }}</option>
+                                    <option value="{{ i }}" {% if job_instance.cron_day_of_month == i %} selected="selected"{% endif %}>{{ i }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
