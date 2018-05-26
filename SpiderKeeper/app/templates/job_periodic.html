@@ -77,7 +77,7 @@
                 </td>
                 {% endif %}
                 <td>
-                    <a href="/project/{{ project.id }}/job/{{ job_instance.job_instance_id }}/edit"><span
+                    <a href="#" onclick="updateJob({{job_instance.job_instance_id}})><span
                             class="label label-warning">Edit</span></a>
                     <a href="/project/{{ project.id }}/job/{{ job_instance.job_instance_id }}/run"><span
                             class="label label-info">Run</span></a>
@@ -219,5 +219,19 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+<script type="text/javascript">
+    $( window).load(function(){
+      var original_content = $("div.modal-content");
+        $('#myModal').on('hide.bs.modal', function (e) {
+    $("div.modal-content").html(original_content);
+})                  
+    });
+    function updateJob(job_id){
+      $.get("/project/{{ project.id }}/job/" + job_id + "/periodic", function(data){
+        $("div.modal-content").html(data);  
+        $("div#job-run-modal").show();
+     });          
+   }
+</script>
 <!-- /.modal -->
 {% endblock %}
